@@ -1,6 +1,5 @@
 package com.tayfurunal.kanbantool.domain;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -107,7 +106,5 @@ public class Project {
     protected void onUpdate() {
         this.updated_At = new Date();
     }
-=======
-public class Project {
->>>>>>> df69d47104211ef4060edcd9c4c9dda7e4140f82
+
 }

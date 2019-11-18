@@ -3,7 +3,7 @@ package com.tayfurunal.kanbantool.exception;
 public class ProjectIdentifierExceptionResponse {
     private String projectIdentifier;
 
-    public ProjectIdentifierExceptionResponse(String projectIdentifier) {
+    ProjectIdentifierExceptionResponse(String projectIdentifier) {
         this.projectIdentifier = projectIdentifier;
     }
 
