@@ -1,11 +1,17 @@
 package com.tayfurunal.kanbantool.service;
 
 import com.tayfurunal.kanbantool.domain.Backlog;
+import com.tayfurunal.kanbantool.domain.Project;
 import com.tayfurunal.kanbantool.domain.ProjectTask;
+import com.tayfurunal.kanbantool.exception.ProjectIdentifierException;
+import com.tayfurunal.kanbantool.exception.ProjectNotFoundException;
 import com.tayfurunal.kanbantool.repository.BacklogRepository;
+import com.tayfurunal.kanbantool.repository.ProjectRepository;
 import com.tayfurunal.kanbantool.repository.ProjectTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProjectTaskService {
@@ -15,29 +21,43 @@ public class ProjectTaskService {
     @Autowired
     private ProjectTaskRepository projectTaskRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask) {
-        Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
-        projectTask.setBacklog(backlog);
+        try{
 
-        Integer BacklogSequence = backlog.getPTSequence();
-        BacklogSequence++;
-        backlog.setPTSequence(BacklogSequence);
+            Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
+            projectTask.setBacklog(backlog);
 
-        projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
-        projectTask.setProjectIdentifier(projectIdentifier);
+            Integer BacklogSequence = backlog.getPTSequence();
+            BacklogSequence++;
+            backlog.setPTSequence(BacklogSequence);
 
-        if (projectTask.getPriority() == null) {
-            projectTask.setPriority(3);
+            projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
+            projectTask.setProjectIdentifier(projectIdentifier);
+
+            if (projectTask.getPriority() == null) {
+                projectTask.setPriority(3);
+            }
+
+            if (projectTask.getStatus() == "" || (projectTask.getStatus() == null)) {
+                projectTask.setStatus("TO_DO");
+            }
+
+            return projectTaskRepository.save(projectTask);
+        }catch(Exception e){
+            throw new ProjectNotFoundException("Project not Found");
         }
-
-        if (projectTask.getStatus() == "" || (projectTask.getStatus() == null)) {
-            projectTask.setStatus("TO_DO");
-        }
-
-        return projectTaskRepository.save(projectTask);
     }
 
     public Iterable<ProjectTask> findBacklogById(String id) {
+        Project project = projectRepository.findByProjectIdentifier(id);
+
+        if(project==null){
+            throw new ProjectNotFoundException("Project with ID: '"+id+"' does not exist");
+        }
+
         return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
     }
 }
