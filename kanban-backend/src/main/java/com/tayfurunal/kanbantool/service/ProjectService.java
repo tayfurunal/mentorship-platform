@@ -7,7 +7,6 @@ import com.tayfurunal.kanbantool.repository.BacklogRepository;
 import com.tayfurunal.kanbantool.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.plugin2.jvm.ProxyJVMLauncher;
 
 @Service
 public class ProjectService {

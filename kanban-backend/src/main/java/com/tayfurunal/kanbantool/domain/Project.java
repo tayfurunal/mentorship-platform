@@ -33,6 +33,7 @@ public class Project {
     @Column(updatable = false)
     private Date created_At;
     @JsonFormat(pattern = "yyyy-mm-dd")
+    //@Temporal(TemporalType.TIMESTAMP) date + time
     private Date updated_At;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
