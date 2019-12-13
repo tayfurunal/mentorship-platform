@@ -46,9 +46,9 @@ public class JWTTokenProvider {
         } catch (MalformedJwtException ex) {
             System.out.println("Invalid JWT Token");
         } catch (ExpiredJwtException ex) {
-            System.out.println("Expired JWT Token");
+            System.out.println("Expired JWT token");
         } catch (UnsupportedJwtException ex) {
-            System.out.println("Unsupported JWT Token");
+            System.out.println("Unsupported JWT token");
         } catch (IllegalArgumentException ex) {
             System.out.println("JWT claims string is empty");
         }
