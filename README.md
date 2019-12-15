@@ -35,6 +35,6 @@ $ yarn start
 
 ### Screenshots
 
-![image](https://gfycat.com/thunderousseveredugong)
+![image](https://giant.gfycat.com/ThunderousSevereDugong.webm)
 
 ---
