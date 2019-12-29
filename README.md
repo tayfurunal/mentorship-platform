@@ -35,6 +35,6 @@ $ yarn start
 
 ### Screenshots
 
-![image](https://im4.ezgif.com/tmp/ezgif-4-0bd8e7f740e9.gif)
+![image](https://media.giphy.com/media/RlOKPy3rvQTL1VqbiT/giphy.gif)
 
 ---
